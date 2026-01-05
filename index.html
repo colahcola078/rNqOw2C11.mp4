@@ -1,81 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <title> Should be me getting railed 😩 </title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #ffffff;
-            padding: 20px;
-        }
-        .video-title {
-            font-size: 1em;
-            font-weight: bold;
-            margin-bottom: 18px;
-            letter-spacing: 1px;
-            color: black;
-        }
-        .video-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 720px;
-            margin: 0 auto;
-        }
-        video {
-            width: 100%;
-            max-width: 100%;
-            border-radius: 10px;
-            display: block;
-        }
-        .ad-banner-inside {
-            position: absolute;
-            top: 8;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 320px;
-            height: 50px;
-            border-radius: 10px 10px 0 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2;
-            overflow: hidden;
-        }
-        @media (max-width: 400px) {
-            .ad-banner-inside {
-                width: 95vw;
-                height: 40px;
-                font-size: 0.85em;
-            }
-        }
-    </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title> Should be me getting brunch 😂 </title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#0f0f0f;
+  display:flex;
+  justify-content:center;
+  min-height:100vh;
+  color:#fff;
+}
+
+.page{
+  width:100%;
+  max-width:420px;
+  padding:env(safe-area-inset-top) 10px env(safe-area-inset-bottom);
+}
+
+/* ================= AD ================= */
+.ad-top{
+  display:flex;
+  justify-content:center;
+  margin-bottom:10px;
+}
+
+/* ================= VIDEO ================= */
+.video-wrapper{
+  position:relative;
+  width:100%;
+  height:72vh;
+  border-radius:18px;
+  overflow:hidden;
+  background:#000;
+  box-shadow:0 12px 35px rgba(0,0,0,.65);
+  cursor:pointer;
+}
+
+/* Skeleton Loader */
+.video-wrapper.loading::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    90deg,#111 25%,#1b1b1b 37%,#111 63%
+  );
+  background-size:400% 100%;
+  animation:shimmer 1.2s infinite;
+  z-index:5;
+}
+
+@keyframes shimmer{
+  0%{background-position:100% 0}
+  100%{background-position:-100% 0}
+}
+
+/* Gradient Overlay */
+.video-wrapper::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,.25),
+    rgba(0,0,0,0),
+    rgba(0,0,0,.35)
+  );
+  pointer-events:none;
+  z-index:2;
+}
+
+.video-inner{
+  position:relative;
+  width:100%;
+  height:100%;
+}
+
+video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:18px;
+  transform:translateZ(0);
+  backface-visibility:hidden;
+}
+
+/* Disable fullscreen button */
+video::-webkit-media-controls-fullscreen-button{
+  display:none!important;
+}
+
+/* ================= UI OVERLAY ================= */
+.overlay-ui{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:14px;
+  z-index:3;
+  pointer-events:none;
+}
+
+.caption{
+  font-size:15px;
+  font-weight:500;
+  margin-bottom:8px;
+  text-shadow:0 2px 10px rgba(0,0,0,.9);
+}
+
+.cta{
+  align-self:flex-start;
+  font-size:13px;
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(6px);
+  padding:6px 12px;
+  border-radius:999px;
+  transition:.3s;
+}
+
+/* Sound Icon */
+.sound-icon{
+  position:absolute;
+  top:12px;
+  right:12px;
+  background:rgba(0,0,0,.55);
+  padding:6px 9px;
+  border-radius:50%;
+  font-size:14px;
+  z-index:4;
+}
+
+/* Progress Bar */
+.progress-bar{
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:3px;
+  background:rgba(255,255,255,.18);
+  z-index:4;
+}
+.progress-bar span{
+  display:block;
+  height:100%;
+  width:0%;
+  background:#fff;
+}
+
+/* Desktop */
+@media (min-width:768px){
+  .video-wrapper{height:560px}
+}
+</style>
 </head>
+
 <body>
-<div class="video-wrapper"><div class="ad-banner-inside">
+
+<div class="page">
+
+  <!-- AD -->
+  <div class="ad-top">
+    <script>
+    atOptions={
+      'key':'176376f281e0f17f9cde96ca0cb7cd4c',
+      'format':'iframe',
+      'height':250,
+      'width':300,
+      'params':{}
+    };
+    </script>
+    <script src="https://beginshello.com/176376f281e0f17f9cde96ca0cb7cd4c/invoke.js"></script>
+  </div>
+
+  <!-- VIDEO -->
+  <div class="video-wrapper loading" id="videoWrap">
+    <div class="video-inner">
+
+      <video id="video"
+        autoplay muted loop playsinline webkit-playsinline
+        preload="metadata"
+        disablePictureInPicture
+        controlsList="nodownload noremoteplayback nofullscreen"
+        poster="">
+        <source src="https://cdn.videy.co/698KNiIG1.mp4" type="video/mp4">
+      </video>
+
+      <div class="sound-icon" id="soundIcon">🔇</div>
+
+      <div class="overlay-ui">
+        <div class="caption">
+          Should be me getting brunch 😂
+        </div>
+        <div class="cta" id="cta">🔊 Tap for sound</div>
+      </div>
+
+      <div class="progress-bar"><span></span></div>
+
+    </div>
+  </div>
+
+</div>
 
 <script>
-  atOptions = {
-    'key' : 'a56d9957870f34de53762968bb2255c5',
-    'format' : 'iframe',
-    'height' : 50,
-    'width' : 320,
-    'params' : {}
-  };
+const video = document.getElementById("video");
+const wrap = document.getElementById("videoWrap");
+const bar = document.querySelector(".progress-bar span");
+const cta = document.getElementById("cta");
+const soundIcon = document.getElementById("soundIcon");
+
+video.play().catch(()=>{});
+
+/* remove loader */
+video.addEventListener("canplay",()=>{
+  wrap.classList.remove("loading");
+});
+
+/* tap to unmute */
+video.addEventListener("click",()=>{
+  if(video.muted){
+    video.muted=false;
+    cta.textContent="🔥 Sound on";
+    soundIcon.textContent="🔊";
+    setTimeout(()=>cta.style.opacity=0,1200);
+  }
+});
+
+/* progress */
+video.addEventListener("timeupdate",()=>{
+  bar.style.width=(video.currentTime/video.duration*100)+"%";
+});
+
+/* anti fullscreen */
+video.addEventListener("webkitbeginfullscreen",e=>e.preventDefault());
+document.addEventListener("fullscreenchange",()=>{
+  if(document.fullscreenElement){
+    document.exitFullscreen();
+  }
+});
 </script>
-<script src="https://situateddivine.com/a56d9957870f34de53762968bb2255c5/invoke.js"></script>
 
-		 </div>
-        <video autoplay loop playsinline muted controls poster>
-            <source src="https://cdn.videy.co/rNqOw2C11.mp4" type="video/mp4">
-        </video></div>
-
-<script async="async" data-cfasync="false" src="https://beginshello.com/46866105b24346c18256dc17a0df3c2e/invoke.js"></script>
-<div id="container-46866105b24346c18256dc17a0df3c2e"></div>
-
- 	<!-- Histats.com  START  (aync)-->
+	<!-- Histats.com  START  (aync)-->
 <script type="text/javascript">var _Hasync= _Hasync|| [];
 _Hasync.push(['Histats.start', '1,4992245,4,511,95,18,00000000']);
 _Hasync.push(['Histats.fasi', '1']);
@@ -87,5 +257,6 @@ hs.src = ('//s10.histats.com/js15_as.js');
 })();</script>
 <noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?4992245&101" alt="" border="0"></a></noscript>
 <!-- Histats.com  END  -->
+
 </body>
 </html>
